@@ -1,0 +1,52 @@
+{{define "explain"}}
+<script src="/js/timer.js"></script>
+<div>
+  <div class="card" style="margin: 15px;">
+    <div class="card-header">
+      <h1>説明</h1>
+    </div>
+    <div class="card-body">
+      <canvas id="lefttime"></canvas>
+      <h3 id="time" style="text-align: center;">00:00</h3>
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col text-center">
+            <button class="btn btn-primary btn-lg" id="start" onClick="start('exp')">開始</button>
+          </div>
+          <div class="col text-center">
+            <button class="btn btn-primary btn-lg" id="end" onClick="end()">終了</button>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" id="eval4" onClick="evaluation(4, '理解可')">理解可</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" id="eval3" onClick="evaluation(3, '要確認')">要確認</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" id="eval2" onClick="evaluation(2, '要説明')">要説明</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-primary btn-lg btn-block" id="eval1" onClick="evaluation(1, '手添え')">手添え</button>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col text-center">
+            <button class="btn btn-primary btn-lg" id="pop" onClick="pop()">取り消し</button>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col text-center">
+            <button class="btn btn-primary btn-lg" id="next" onClick="next()">次へ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  btnControl()
+  renderChart()
+  </script>
+</div>
+{{end}}

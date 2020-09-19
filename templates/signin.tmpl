@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  {{template "base" .}}
+  <body>
+    <div>
+      {{template "header" .}}
+      <div class="card" style="margin: 15px;">
+        <div class="card-header">
+          <ul class="nav nav-pills card-header-tabs" id="pills-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">ログイン</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">サインアップ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+              <form method="POST" action="/api/login">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="ID" name="id" required />
+                </div>
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control" placeholder="Password" name="password" required />
+                </div>
+                <div class="input-group mb-3">
+                  <input type="submit" class="btn btn-primary" style="display: block; margin: 0 0 0 auto;"　value="送信"　/>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <form method="POST" action="/api/signup">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="ID" name="id" required />
+                </div>
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control" placeholder="Password" name="password" required />
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Institute(所属機関)" name="institute" required />
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Master Key" name="masterKey" />
+                </div>
+                <div class="input-group mb-3">
+                  <input type="submit" class="btn btn-primary" style="display: block; margin: 0 0 0 auto;"　value="送信"　/>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

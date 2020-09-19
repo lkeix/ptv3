@@ -1,0 +1,163 @@
+{{define "view"}}
+<script src="/js/dialog.js"></script>
+<script src="/js/delete.js"></script>
+<div style="margin: 15px;">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="search">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+          <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+        </svg>
+      </span>
+    </div>
+    <input type="text" class="form-control" aria-describedby="search" onInput="changeSearch(this)" />
+  </div>
+  <div style="text-align: right; margin: 15px;">
+    <button class="btn btn-outline-danger" onClick="deletePage()">
+      <span class="btn-label">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash2-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.037 3.225l1.684 10.104A2 2 0 0 0 5.694 15h4.612a2 2 0 0 0 1.973-1.671l1.684-10.104C13.627 4.224 11.085 5 8 5c-3.086 0-5.627-.776-5.963-1.775z"/>
+          <path fill-rule="evenodd" d="M12.9 3c-.18-.14-.497-.307-.974-.466C10.967 2.214 9.58 2 8 2s-2.968.215-3.926.534c-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466zM8 5c3.314 0 6-.895 6-2s-2.686-2-6-2-6 .895-6 2 2.686 2 6 2z"/>
+        </svg>
+      </span>
+    </button>
+  </div>
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">名前</th>
+        <th scope="col">性別</th>
+        <th scope="col">年齢</th>
+      </tr>
+    </thead>
+    <tbody id="patientDataTable">
+    {{range $i, $patient := .Patients}}
+      <tr id="patient{{$i}}" onClick="openDialog({{$patient.PatientID}})" data-toggle="modal" data-target="#fsmodal">
+        <th scope="row">{{$patient.Name}}</th>
+        <td>{{$patient.Gender}}</td>
+        <td>{{$patient.Age}}</td>
+      </tr>
+    {{end}}
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example" id="pagination">
+    <ul class="pagination justify-content-center">
+      {{range $_, $page := .Page}}
+      <li class="page-item">
+        <a class="page-link" href="/home?page={{$page}}" tabindex="1">{{$page}}</a>
+      </li>
+      {{end}}
+    </ul>
+  </nav>
+</div>
+
+<!-- Modal -->
+<div class="modal fade right" id="fsmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+    <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+        <div class="modal-content-full-width modal-content ">
+            <div class=" modal-header-full-width   modal-header text-center">
+                <h5 class="modal-title w-100" id="exampleModalPreviewLabel"></h5>
+                <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                    <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <div class="card" style="margin: 15px;">
+                <div class="card-header">
+                  <ul class="nav nav-pills card-header-tabs" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#list" role="tab" aria-controls="pills-home" aria-selected="true">過去のcsvデータ</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#explain" role="tab" aria-controls="pills-profile" aria-selected="false" onClick="displayExp()">説明時チャート</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#work" role="tab" aria-controls="pills-profile" aria-selected="false" onClick="displayWork()">作業時チャート</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#check" role="tab" aria-controls="pills-profile" aria-selected="false" onClick="displayChk()">チェック時チャート</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="pills-home-tab">
+                      <table class="table table-hover table-dark" id="csvDataTable">
+                        <thead>
+                          <tr>
+                            <th scope="col">日付</th>
+                            <th scope="col">説明時</th>
+                            <th scope="col">作業時</th>
+                            <th scope="col">チェック時</th>
+                          </tr>
+                        </thead>
+                        <tbody id="pastDataTable">
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="tab-pane fade" id="explain" role="tabpanel" aria-labelledby="pills-profile-tab">
+                      <h1>説明時チャート</h1>
+                      <div id="exp">
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="work" role="tabpanel" aria-labelledby="pills-profile-tab">
+                      <h1>作業時チャート</h1>
+                      <div id="wo">
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="check" role="tabpanel" id="checkChart" aria-labelledby="pills-profile-tab">
+                      <h1>チェック時チャート</h1>
+                      <div id="chk">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col">
+                              <h3>段取り</h3>
+                              <canvas id="setup"></canvas>
+                            </div>
+                            <div class="col">
+                              <h3>理解</h3>
+                              <canvas id="comprehension"></canvas>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col">
+                              <h3>持続・集中</h3>
+                              <canvas id="concentration"></canvas>
+                            </div>
+                            <div class="col">
+                              <h3>丁寧さ</h3>
+                              <canvas id="politeness"></canvas>
+                            </div>
+                            
+                          </div>
+
+                          <div class="row">
+                            <div class="col">
+                              <h3>作業速度</h3>
+                              <div id="speed" style="padding: 15px;">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <h3>作業体制</h3>
+                              <div id="resistance" style="padding: 15px;"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer-full-width  modal-footer">
+                <button type="button" class="btn btn-danger btn-md btn-rounded" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+  <script src="/js/changeSearch.js"></script>
+</div>
+{{end}}

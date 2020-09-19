@@ -1,0 +1,390 @@
+{{define "check"}}
+<script src="/js/timer.js"></script>
+<div>
+  <div class="card" style="margin: 15px;">
+    <div class="card-body">
+      <form action="/api/storeLog" method="post">
+        <input type="hidden" value="" name="exp" id="exp" />
+        <input type="hidden" value="" name="work" id="work" />
+        <div class="container">
+          <h1>段取り</h1>
+          <div class="dropdown-divider"></div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>塗り絵を見て描かれている絵が何かわかる</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q1" value="5" id="q1-5" required />
+              <label for="q1-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q1" value="4" id="q1-4" required />
+              <label for="q1-4">確認</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q1" value="3" id="q1-3" required />
+              <label for="q1-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q1" value="2" id="q1-2" required />
+              <label for="q1-2">手添え</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q1" value="1" id="q1-1" required />
+              <label for="q1-1">困難</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>必要な色鉛筆が確認できる(12色)</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q2" value="5" id="q2-5" required />
+              <label for="q2-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q2" value="4" id="q2-4" required />
+              <label for="q2-4">確認</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q2" value="3" id="q2-3" required />
+              <label for="q2-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q2" value="2" id="q2-2" required />
+              <label for="q2-2">手添え</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q2" value="1" id="q2-1" required />
+              <label for="q2-1">困難</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>適切な配置ができる(色鉛筆 色番号用紙 パズル塗り絵)</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q3" value="5" id="q3-5" required />
+              <label for="q3-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q3" value="4" id="q3-4" required />
+              <label for="q3-4">確認</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q3" value="3" id="q3-3" required />
+              <label for="q3-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q3" value="2" id="q3-2" required />
+              <label for="q3-2">手添え</label>
+            </div>
+          </div>
+          <h1>理解</h1>
+          <div class="dropdown-divider"></div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>色番号と色鉛筆の色を選別できる</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q4" value="5" id="q4-5" required />
+              <label for="q4-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q4" value="4" id="q4-4" required />
+              <label for="q4-4">確認</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q4" value="3" id="q4-3" required />
+              <label for="q4-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q4" value="2" id="q4-2" required />
+              <label for="q4-2">手添え</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>下絵の番号が区別できる</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q5" value="5" id="q5-5" required />
+              <label for="q5-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q5" value="4" id="q5-4" required />
+              <label for="q5-4">確認</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q5" value="3" id="q5-3" required />
+              <label for="q5-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q5" value="2" id="q5-2" required />
+              <label for="q5-2">手添え</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>塗り方が理解できる</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q6" value="5" id="q6-5" required />
+              <label for="q6-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q6" value="4" id="q6-4" required />
+              <label for="q6-4">確認</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q6" value="3" id="q6-3" required />
+              <label for="q6-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q6" value="2" id="q6-2" required />
+              <label for="q6-2">手添え</label>
+            </div>
+          </div>
+          <h1>持続・集中</h1>
+          <div class="dropdown-divider"></div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>集中して塗り絵に取り組む</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q7" value="5" id="q7-5" required />
+              <label for="q7-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q7" value="4" id="q7-4" required />
+              <label for="q7-4">再開</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q7" value="3" id="q7-3" required />
+              <label for="q7-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q7" value="2" id="q7-2" required />
+              <label for="q7-2">促し</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q7" value="2" id="q7-1" required />
+              <label for="q7-1">中断</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>色番号毎に適切に塗れている</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q8" value="5" id="q8-5" required />
+              <label for="q8-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q8" value="4" id="q8-4" required />
+              <label for="q8-4">確認</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q8" value="3" id="q8-3" required />
+              <label for="q8-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q8" value="2" id="q8-2" required />
+              <label for="q8-2">手添え</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>塗り残しがない</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q9" value="5" id="q9-5" required />
+              <label for="q9-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q9" value="4" id="q9-4" required />
+              <label for="q9-4">確認</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q9" value="3" id="q9-3" required />
+              <label for="q9-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q9" value="2" id="q9-2" required />
+              <label for="q9-2">手添え</label>
+            </div>
+          </div>
+          <h1>丁寧さ</h1>
+          <div class="dropdown-divider"></div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>線からはみ出さずに塗れている</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q10" value="5" id="q10-5" required />
+              <label for="q10-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q10" value="4" id="q10-4" required />
+              <label for="q10-4">線</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q10" value="3" id="q10-3" required />
+              <label for="q10-3">面</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q10" value="2" id="q10-2" required />
+              <label for="q10-2">全体</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>各々のピースを隙間なく塗っている</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q11" value="5" id="q11-5" required />
+              <label for="q11-5">100%</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q11" value="4" id="q11-4" required />
+              <label for="q11-4">75%</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q11" value="3" id="q11-3" required />
+              <label for="q11-3">50%</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q11" value="2" id="q11-2" required />
+              <label for="q11-2">25%</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>効率良く塗るため　紙の方向を変えている</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q12" value="5" id="q12-5" required />
+              <label for="q12-5">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q12" value="4" id="q12-4" required />
+              <label for="q12-4">確認</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q12" value="3" id="q12-3" required />
+              <label for="q12-3">口頭</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q12" value="2" id="q12-2" required />
+              <label for="q12-2">手添え</label>
+            </div>
+          </div>
+          <h1>作業速度</h1>
+          <div class="dropdown-divider"></div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>不必要な中断がない</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q13" value="有り" id="q13-5" required  />
+              <label for="q13-5">有り</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q13" value="無し" id="q13-4" required />
+              <label for="q13-4">無し</label>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>所要時間</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="range" class="form-control-range" id="worktime" name="q14" max="30" min="1" onChange="changetime()">
+              <h2 style="text-align: center;">
+                <span id="disptime">15</span>分
+              </h2>
+              <script>
+              function changetime() {
+                document.getElementById("disptime").innerHTML = document.getElementById("worktime").value
+              }
+              </script>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <h4>塗り率(%)</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q15" value="100%" id="q15-5" required />
+              <label for="q15-5">100%</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q15" value="75%" id="q15-4" required />
+              <label for="q15-4">75%</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q15" value="50%" id="q15-3" required />
+              <label for="q15-3">50%</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q15" value="25%" id="q15-2" required />
+              <label for="q15-2">25%</label>
+            </div>
+          </div>
+          <h1>作業耐性</h1>
+          <div class="dropdown-divider"></div>
+           <div class="row mb-3">
+            <div class="col">
+              <h4>30分程度塗り絵に取り組める</h4>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <input type="radio" name="q16" value="可" id="q16-3" required />
+              <label for="q16-3">可</label>
+            </div>
+            <div class="col">
+              <input type="radio" name="q16" value="不可" id="q16-2" required />
+              <label for="q16-2">不可</label>
+            </div>
+          </div>
+        </div>
+        <input class="btn btn-primary btn-lg" style="display: block; margin: 0 auto;" type="submit" />
+      </form>
+    </div>
+  </div>
+  <script>
+  setTimerLog()
+  </script>
+</div>
+{{end}}

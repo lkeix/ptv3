@@ -1,0 +1,19 @@
+<html>
+  {{template "base" .}}
+  <body>
+    <div>
+      {{template "header" .}}
+      <div class="card" style="margin: 15px;">
+        <div class="card-header text-danger">認証エラー</div>
+        <div class="card-body">
+          <h5>以下の可能性が有ります。</h5>
+          <p>・ セッションが無効になっている。</p>
+          <p>・ ログイン時のIDとパスワードの組み合わせが不正である。</p>
+          <p>・ 既に指定したIDのユーザが存在する。</p>
+          <p>・ 存在しない機関の所属で登録しようとしている。</p>
+          <p><a href="/signin">ログインページ</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
