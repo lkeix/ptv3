@@ -1,0 +1,46 @@
+{{define "result"}}
+<div>
+  <div class="card" style="margin: 15px;">
+    <div class="card-header">
+    損失計算結果
+    </div>
+    <div class="card-body">
+      <div class="container-fulid">
+        <div class="row">
+          <div class="col">
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">日付(説明時 or 作業時)</th>
+                  {{range $j, $elm := $.Rng}}
+                  <th scope="col">区間({{$elm}})</th>
+                  {{end}}
+                </tr>
+              </thead>
+              <tbody>
+                {{range $i, $data := .ExplainLoss}}
+                <tr>
+                  <th>{{index $.Dates $i}}(説明時)</th>
+                  {{range $j, $elm := $data}}
+                    <td scope="col">{{$elm}}</td>
+                  {{end}}
+                </tr>
+                <tr>
+                  <th>{{index $.Dates $i}}(作業時)</th>
+                  {{range $j, $elm := index $.WorkLoss $i }}
+                  <td scope="col">{{$elm}}</td>
+                  {{end}}
+                </tr>
+                {{end}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: right; margin: 15px;">
+      <button class="btn btn-primary" onClick="location.href='/loss'">戻る</button>
+    </div>
+  </div>
+</div>
+{{end}}

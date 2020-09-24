@@ -103,9 +103,9 @@ func ReadPatientData(patientID string) [][]interface{} {
 // ReadPastPatients read past patients data from doctor id.
 func ReadPastPatients(doctorid, searchTxt string) [][]interface{} {
 	searchTxt = "%" + searchTxt + "%"
-	query := "select patient.id, patient.name from patient, log where log.doctorid = $1 and log.patientid = patient.id and patient.name like $2"
+	query := "select distinct patient.id, patient.name from patient, log where log.doctorid = $1 and log.patientid = patient.id and patient.name like $2"
 	if readMasterDoctor(doctorid) {
-		query = "select patient.id patient.name from doctor, institute, log, patient " +
+		query = "select distinct patient.id patient.name from doctor, institute, log, patient " +
 			"where doctor.instituteid in (select doctor.instituteid from doctor, institute where doctor.id = $1 and doctor.instituteid = institute.id) and " +
 			"log.doctorid = doctor.id and patient.id = log.patientid and patient.name like $2"
 	}
@@ -140,4 +140,33 @@ func DeletePatient(patientID string) {
 		patientID,
 	}
 	Exec(query, args)
+}
+
+// ReadPatientLog read exp, work log data.
+func ReadPatientLog(patientID string) [][]interface{} {
+	query := "select exp, work, date from log where patientid = $1"
+	args := []interface{}{
+		patientID,
+	}
+	rows, _ := GetRow(query, args)
+	if len(rows) == 0 {
+		return nil
+	}
+	return rows
+}
+
+// ReadAllPatientsLog read all patients log from doctor id.
+func ReadAllPatientsLog(doctorid string) [][]interface{} {
+	query := "select distinct log.id, patient.name, log.date from doctor, patient, log where doctor.id = log.doctorid and log.patientid = patient.id and doctor.id = $1"
+	args := []interface{}{
+		doctorid,
+	}
+	if readMasterDoctor(doctorid) {
+		query = "select distinct log.id, patient.name, log.date " +
+			"from doctor, institute, log, patient " +
+			"where doctor.instituteid in (select doctor.instituteid from doctor, institute where doctor.id = $1 and doctor.instituteid = institute.id) and " +
+			"log.doctorid = doctor.id and patient.id = log.patientid"
+	}
+	rows, _ := GetRow(query, args)
+	return rows
 }

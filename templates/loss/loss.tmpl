@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  {{template "base" .}}
+  <body>
+    <div>
+      {{template "header" .}}
+    </div>
+    {{if eq .view "listView" }}
+    {{template "list" .}}
+    {{else if eq .view "resultView"}}
+    {{template "result" .}}
+    {{end}}
+  </body>
+</html>

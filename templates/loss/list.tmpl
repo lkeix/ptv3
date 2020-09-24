@@ -1,0 +1,48 @@
+{{define "list"}}
+<script src="/js/lossdivide.js"></script>
+<div style="margin: 15px;">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="search">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+          <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+        </svg>
+      </span>
+    </div>
+    <input type="text" class="form-control" aria-describedby="search" onInput="changeSearch(this)" />
+  </div>
+  <form action="/lossCalc" method="post">
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th scope="col">選択</th>
+          <th scope="col">名前</th>
+          <th scope="col">性別</th>
+          <th scope="col">年齢</th>
+        </tr>
+      </thead>
+      <tbody id="patientDataTable">
+      {{range $i, $patient := .Patients}}
+        <tr onClick="lossCheck({{$patient.PatientID}})" data-toggle="modal" data-target="#fsmodal">
+          <td><input type="radio" name="patient" id="patient{{$patient.PatientID}}" value="{{$patient.PatientID}}" /></td>
+          <th scope="row">{{$patient.Name}}</th>
+          <td>{{$patient.Gender}}</td>
+          <td>{{$patient.Age}}</td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+    <div class="progress" id="progress" style="margin-bottom: 15px;">
+
+    </div>
+    <div>
+      <input type="number" class="form-control" placeholder="分割数" name="divideNum" onInput="divide(this)" />
+    </div>
+    <div>
+      <input type="submit" class="btn btn-primary" style="display: block; margin: 15px 0 0 auto;" value="計算実行" />
+    </div>
+  </form>
+  <script src="/js/lossSearch.js"></script>
+</div>
+{{end}}

@@ -67,7 +67,7 @@ function updateTable(dispdata) {
   tbody = document.getElementById("patientDataTable")
   let inner = ""
   for (let i = 0;i < dispdata.length; i++) {
-  inner += "<tr id=\"patient" + i + "\" onClick=\"openDialog(" + dispdata[i].PatientID + ")\" data-toggle=\"modal\" data-target=\"#fsmodal\"" + ">"
+  inner += "<tr onClick=\"openDialog(" + dispdata[i].PatientID + ")\" data-toggle=\"modal\" data-target=\"#fsmodal\"" + ">"
   inner += "<th>" + dispdata[i].Name + "</th>"
   inner += "<td>" + dispdata[i].Gender + "</td>"
   inner += "<td>" + dispdata[i].Age + "</td>"
@@ -80,7 +80,7 @@ function updateTableless(dispdata) {
   tbody = document.getElementById("patientDataTable")
   let inner = ""
   for (let i = 0;i < dispdata.length; i++) {
-  inner += "<tr id=\"patient" + i + "\" onClick=\"openDialog(" + dispdata[i].patientID + ")\" data-toggle=\"modal\" data-target=\"#fsmodal\"" + ">"
+  inner += "<tr onClick=\"openDialog(" + dispdata[i].patientID + ")\" data-toggle=\"modal\" data-target=\"#fsmodal\"" + ">"
   inner += "<th>" + dispdata[i].name + "</th>"
   inner += "<td>" + dispdata[i].gender + "</td>"
   inner += "<td>" + dispdata[i].age + "</td>"

@@ -25,6 +25,8 @@ function readPatientData(patientid) {
     localStorage.setItem('work', JSON.stringify(worklogs))
     localStorage.setItem('chk', JSON.stringify(checklogs))
     tbody.innerHTML = inner
+    init = document.getElementById('pills-home-tab')
+    init.click()
   })
 }
 
