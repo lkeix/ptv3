@@ -1,7 +1,6 @@
 package api
 
 import (
-	"encoding/json"
 	"ptv3/internal/dblib"
 	"strconv"
 
@@ -93,41 +92,43 @@ func StoreLog(ctx *gin.Context) {
 	patientid := session.Get("patientID").(int64)
 	exp := ctx.PostForm("exp")
 	work := ctx.PostForm("work")
-	q1 := ctx.PostForm("q1")
-	q2 := ctx.PostForm("q2")
-	q3 := ctx.PostForm("q3")
-	q4 := ctx.PostForm("q4")
-	q5 := ctx.PostForm("q5")
-	q6 := ctx.PostForm("q6")
-	q7 := ctx.PostForm("q7")
-	q8 := ctx.PostForm("q8")
-	q9 := ctx.PostForm("q9")
-	q10 := ctx.PostForm("q10")
-	q11 := ctx.PostForm("q11")
-	q12 := ctx.PostForm("q12")
-	q13 := ctx.PostForm("q13")
-	q14 := ctx.PostForm("q14")
-	q15 := ctx.PostForm("q15")
-	q16 := ctx.PostForm("q16")
-	dist := map[string]string{
-		"q1":  q1,
-		"q2":  q2,
-		"q3":  q3,
-		"q4":  q4,
-		"q5":  q5,
-		"q6":  q6,
-		"q7":  q7,
-		"q8":  q8,
-		"q9":  q9,
-		"q10": q10,
-		"q11": q11,
-		"q12": q12,
-		"q13": q13,
-		"q14": q14,
-		"q15": q15,
-		"q16": q16,
-	}
-	distByte, _ := json.Marshal(dist)
-	dblib.InsertPatientLog(doctorid, patientid, exp, work, string(distByte))
+	/*
+		q1 := ctx.PostForm("q1")
+		q2 := ctx.PostForm("q2")
+		q3 := ctx.PostForm("q3")
+		q4 := ctx.PostForm("q4")
+		q5 := ctx.PostForm("q5")
+		q6 := ctx.PostForm("q6")
+		q7 := ctx.PostForm("q7")
+		q8 := ctx.PostForm("q8")
+		q9 := ctx.PostForm("q9")
+		q10 := ctx.PostForm("q10")
+		q11 := ctx.PostForm("q11")
+		q12 := ctx.PostForm("q12")
+		q13 := ctx.PostForm("q13")
+		q14 := ctx.PostForm("q14")
+		q15 := ctx.PostForm("q15")
+		q16 := ctx.PostForm("q16")
+		dist := map[string]string{
+			"q1":  q1,
+			"q2":  q2,
+			"q3":  q3,
+			"q4":  q4,
+			"q5":  q5,
+			"q6":  q6,
+			"q7":  q7,
+			"q8":  q8,
+			"q9":  q9,
+			"q10": q10,
+			"q11": q11,
+			"q12": q12,
+			"q13": q13,
+			"q14": q14,
+			"q15": q15,
+			"q16": q16,
+		}
+	*/
+	// distByte, _ := json.Marshal(dist)
+	dblib.InsertPatientLog(doctorid, patientid, exp, work, "{}")
 	ctx.Redirect(303, "/logger")
 }

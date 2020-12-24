@@ -126,7 +126,7 @@ function next() {
     nextStep()
   } else if (loggerType === "work") {
     window.localStorage.setItem("work", JSON.stringify(we))
-    nextStep()
+    storeData()
   }
 }
 
@@ -135,6 +135,17 @@ function setTimerLog() {
   let work = document.getElementById("work")
   exp.value = localStorage.getItem("exp")
   work.value = localStorage.getItem("work")
+}
+
+function storeData() {
+  let exp = localStorage.getItem("exp")
+  let work = localStorage.getItem("work")
+  let param = new URLSearchParams()
+  param.append('exp', exp)
+  param.append('work', work)
+  axios.post("/api/storeLog", param).then(() => {
+    location.reload()
+  })
 }
 
 function nextStep() {
