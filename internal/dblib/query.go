@@ -13,7 +13,7 @@ func GetPatientsData(doctorid string) [][]interface{} {
 		doctorid,
 	}
 	if readMasterDoctor(doctorid) {
-		query = "select distinct patient.id, patient.name, patient.gender, patient.age " +
+		query = "select distinct patient.id, patient.name, patient.age, patient.gender " +
 			"from doctor, institute, log, patient " +
 			"where doctor.instituteid in (select doctor.instituteid from doctor, institute where doctor.id = $1 and doctor.instituteid = institute.id) and " +
 			"log.doctorid = doctor.id and patient.id = log.patientid"

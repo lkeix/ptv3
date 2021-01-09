@@ -45,14 +45,14 @@ func GetPatientsData(ctx *gin.Context, page interface{}) ([]PatientData, []int64
 		doctorID = session.Get("doctorID").(string)
 	}
 	base := dblib.GetPatientsData(doctorID)
-	patiensData, pages, patientNum := convPatientData(base)
+	patientsData, pages, patientNum := convPatientData(base)
 	pageitr := page.(int)
 	pageLastitr := min(pageitr*10, int(patientNum))
 	if pageLastitr < page.(int)-1 {
 		ctx.AbortWithError(400, errorlib.ErrorStruct["400"])
 		return nil, nil
 	}
-	return patiensData[(pageitr-1)*10 : pageLastitr], pages[max(pageitr-3, 0):min(pageitr+2, len(pages))]
+	return patientsData[(pageitr-1)*10 : pageLastitr], pages[max(pageitr-3, 0):min(pageitr+2, len(pages))]
 }
 
 // GetAllPatientsData get all patients data
