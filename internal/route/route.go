@@ -175,30 +175,30 @@ func isLogin(ctx *gin.Context) []Menu {
 		menu = []Menu{
 			{
 				Name: "ホーム",
-				Link: "/home",
+				Link: "/ptv3/home",
 			},
 			{
 				Name: "ログ",
-				Link: "/logger",
+				Link: "/ptv3/logger",
 			},
 			{
 				Name: "欠損計算",
-				Link: "/loss",
+				Link: "/ptv3/loss",
 			},
 			{
 				Name: "解析",
-				Link: "/analysis",
+				Link: "/ptv3/analysis",
 			},
 			{
 				Name: "ログアウト",
-				Link: "/logout",
+				Link: "/ptv3/logout",
 			},
 		}
 	} else {
 		menu = []Menu{
 			{
 				Name: "ログイン",
-				Link: "/signin",
+				Link: "/ptv3/signin",
 			},
 		}
 	}
@@ -226,7 +226,7 @@ func logout(ctx *gin.Context) {
 	session := sessions.Default(ctx)
 	session.Clear()
 	session.Save()
-	ctx.Redirect(303, "/signin")
+	ctx.Redirect(303, "/ptv3/signin")
 }
 
 func loss(ctx *gin.Context) {

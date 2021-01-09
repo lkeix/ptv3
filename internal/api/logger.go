@@ -32,7 +32,7 @@ func NewPatientStart(ctx *gin.Context) {
 	session.Set("step", step)
 	session.Set("patientID", patientID)
 	session.Save()
-	ctx.Redirect(303, "/logger")
+	ctx.Redirect(303, "/ptv3/logger")
 }
 
 // PastPatientStart start taking past patient log.
@@ -46,9 +46,9 @@ func PastPatientStart(ctx *gin.Context) {
 		session.Set("step", step)
 		session.Set("patientID", int64(patientIDInt))
 		session.Save()
-		ctx.Redirect(303, "/logger")
+		ctx.Redirect(303, "/ptv3/logger")
 	} else {
-		ctx.Redirect(303, "/logger")
+		ctx.Redirect(303, "/ptv3/logger")
 	}
 }
 
@@ -130,5 +130,5 @@ func StoreLog(ctx *gin.Context) {
 	*/
 	// distByte, _ := json.Marshal(dist)
 	dblib.InsertPatientLog(doctorid, patientid, exp, work, "{}")
-	ctx.Redirect(303, "/logger")
+	ctx.Redirect(303, "/ptv3/logger")
 }

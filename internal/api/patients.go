@@ -163,5 +163,5 @@ func DeletePatient(ctx *gin.Context) {
 	for _, patient := range patients.Patient {
 		dblib.DeletePatient(patient)
 	}
-	ctx.Redirect(303, "/home")
+	ctx.Redirect(303, "/ptv3/home")
 }

@@ -1,5 +1,5 @@
 {{define "list"}}
-<script src="/js/lossdivide.js"></script>
+<script src="/ptv3/js/lossdivide.js"></script>
 <div style="margin: 15px;">
   <div class="input-group mb-3">
     <div class="input-group-prepend">
@@ -12,7 +12,7 @@
     </div>
     <input type="text" class="form-control" aria-describedby="search" onInput="changeSearch(this)" />
   </div>
-  <form action="/lossCalc" method="post">
+  <form action="/ptv3/lossCalc" method="post">
     <table class="table table-hover table-dark">
       <thead>
         <tr>
@@ -43,6 +43,6 @@
       <input type="submit" class="btn btn-primary" style="display: block; margin: 15px 0 0 auto;" value="計算実行" />
     </div>
   </form>
-  <script src="/js/lossSearch.js"></script>
+  <script src="/ptv3/js/lossSearch.js"></script>
 </div>
 {{end}}

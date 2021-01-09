@@ -21,9 +21,9 @@ func Login(ctx *gin.Context) {
 		session.Set("doctorID", id)
 		session.Set("step", int64(1))
 		session.Save()
-		ctx.Redirect(303, "/home")
+		ctx.Redirect(303, "/ptv3/home")
 	} else {
-		ctx.Redirect(303, "/signerror")
+		ctx.Redirect(303, "/ptv3/signerror")
 	}
 }
 
@@ -41,16 +41,16 @@ func Signup(ctx *gin.Context) {
 	}
 	instituteID := dblib.ReadInstitutionID(institute)
 	if instituteID <= 0 {
-		ctx.Redirect(303, "/signerror")
+		ctx.Redirect(303, "/ptv3/signerror")
 	}
 	hashed := utils.CryptPasswd(password)
 	if !dblib.InsertNewDoctor(id, hashed, isMaster, instituteID) {
-		ctx.Redirect(303, "/signerror")
+		ctx.Redirect(303, "/ptv3/signerror")
 	} else {
 		session.Set("login", true)
 		session.Set("doctorID", id)
 		session.Set("step", int64(1))
 		session.Save()
-		ctx.Redirect(303, "/home")
+		ctx.Redirect(303, "/ptv3/home")
 	}
 }

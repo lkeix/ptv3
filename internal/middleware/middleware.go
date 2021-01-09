@@ -10,7 +10,7 @@ func Authorize(ctx *gin.Context) {
 	session := sessions.Default(ctx)
 	log := session.Get("login")
 	if log == nil || !log.(bool) {
-		ctx.Redirect(303, "/signerror")
+		ctx.Redirect(303, "/ptv3/signerror")
 		// ctx.Abort()
 		return
 	}
