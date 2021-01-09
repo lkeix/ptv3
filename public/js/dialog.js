@@ -8,22 +8,22 @@ function readPatientData(patientid) {
     var inner = ""
     var explogs = []
     var worklogs = []
-    var checklogs = []
+    // var checklogs = []
     for (let i = 0; i < pastData.length; i++) {
       inner += "<tr>"
       inner += "<td>" + pastData[i].Date + "</td>"
       inner += "<td>" + 
               "<button onClick=\"download('" + pastData[i].Date + "', '" + pastData[i].Name + "'," + replaceAll(pastData[i].Exp) + ")\" class=\"btn btn-dark\">説明時</button></td>"
       inner += "<td><button onClick=\"download('" + pastData[i].Date + "', '" + pastData[i].Mame + "'," + replaceAll(pastData[i].Work) + ")\" class=\"btn btn-dark\">作業時</button></td>"
-      inner += "<td><button onClick=\"download('" + pastData[i].Date + "', '" + pastData[i].Name + "'," + replaceAll(pastData[i].Chk) + ")\" class=\"btn btn-dark\">チェック時</button></td>"
+      // inner += "<td><button onClick=\"download('" + pastData[i].Date + "', '" + pastData[i].Name + "'," + replaceAll(pastData[i].Chk) + ")\" class=\"btn btn-dark\">チェック時</button></td>"
       inner += "</tr>"
       explogs.push({'date': pastData[i].Date, 'log': pastData[i].Exp })
       worklogs.push({'date': pastData[i].Date, 'log': pastData[i].Work })
-      checklogs.push({'date': pastData[i].Date, 'log': pastData[i].Chk})
+      // checklogs.push({'date': pastData[i].Date, 'log': pastData[i].Chk})
     }
     localStorage.setItem('exp', JSON.stringify(explogs))
     localStorage.setItem('work', JSON.stringify(worklogs))
-    localStorage.setItem('chk', JSON.stringify(checklogs))
+    // localStorage.setItem('chk', JSON.stringify(checklogs))
     tbody.innerHTML = inner
     init = document.getElementById('pills-home-tab')
     init.click()

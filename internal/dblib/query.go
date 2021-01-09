@@ -72,8 +72,6 @@ func InsertNewPatient(name, age, gender string) int64 {
 func InsertPatientLog(doctorid string, patientid int64, exp, work, check string) {
 	t := time.Now()
 	today := t.Format("2006/01/02")
-	fmt.Println(exp)
-	fmt.Println(work)
 	query := "insert into log (doctorid, patientid, exp, work, chk, date) values ($1, $2, $3, $4, $5, $6)"
 	args := []interface{}{
 		doctorid, patientid, exp, work, check, today,
