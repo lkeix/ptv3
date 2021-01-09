@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"ptv3/internal/dblib"
 	"strconv"
 
@@ -25,6 +26,8 @@ func NewPatientStart(ctx *gin.Context) {
 	patientGender := ctx.PostForm("gender")
 	patientAge := ctx.PostForm("age")
 	genderNum := genderConvNumber(patientGender)
+	fmt.Println(patientAge)
+	fmt.Println(patientGender)
 	patientID := dblib.InsertNewPatient(patientName, patientAge, genderNum)
 	session := sessions.Default(ctx)
 	step := session.Get("step").(int64)
