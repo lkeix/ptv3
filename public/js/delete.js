@@ -1,9 +1,9 @@
 function deletePage(){
-  location.href = "/delete"
+  location.href = "/ptv3/delete"
 }
 
 function viewPage() {
-  location.href = "/home"
+  location.href = "/ptv3/home"
 }
 
 function deleteCheck(patientID) {

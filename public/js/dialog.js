@@ -2,7 +2,7 @@
 function readPatientData(patientid) {
   let params = new URLSearchParams()
   params.append('patientID', patientid)
-  axios.post('/api/readPatientData', params).then(res => {
+  axios.post('/ptv3/api/readPatientData', params).then(res => {
     var pastData = res.data
     var tbody = document.getElementById("pastDataTable")
     var inner = ""

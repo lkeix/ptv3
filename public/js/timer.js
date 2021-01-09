@@ -143,13 +143,13 @@ function storeData() {
   let param = new URLSearchParams()
   param.append('exp', exp)
   param.append('work', work)
-  axios.post("/api/storeLog", param).then(() => {
+  axios.post("/ptv3/api/storeLog", param).then(() => {
     location.reload()
   })
 }
 
 function nextStep() {
-  axios.post("/api/nextstep", {}).then(() => {
+  axios.post("/ptv3/api/nextstep", {}).then(() => {
     location.reload()
   })
 }

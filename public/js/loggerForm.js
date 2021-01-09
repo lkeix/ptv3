@@ -10,7 +10,7 @@ function listMenu(e) {
   let params = new URLSearchParams()
   params.append('searchText', e.value)
   patient = document.getElementById("patient")
-  axios.post("/api/readPastPatient", params).then(res => {
+  axios.post("/ptv3/api/readPastPatient", params).then(res => {
     let menu = document.getElementById('menu')
     let inner = ""
     for (let i = 0;i < res.data.length; i++) {

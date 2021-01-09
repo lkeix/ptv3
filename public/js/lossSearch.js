@@ -14,7 +14,7 @@ function changeSearch(e) {
 }
 
 function readAllPatients() {
-  axios.post('/api/readAllPatients', {}).then(res => {
+  axios.post('/ptv3/api/readAllPatients', {}).then(res => {
     jsonStr = JSON.stringify(res.data)
     localStorage.setItem('allPatients', jsonStr)
   })
